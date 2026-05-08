@@ -1,0 +1,110 @@
+/* CSS personalizado para o site Conheça BH */
+
+/* Estilos gerais */
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+}
+
+/* Animações para os cards */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading animation */
+.loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: "Carregando...";
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #6c757d;
+}
+
+/* Estilos para estrelas de avaliação */
+.stars {
+  color: #ffc107;
+}
+
+/* Responsividade adicional */
+@media (max-width: 768px) {
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  .d-flex.justify-content-between > div {
+    margin-top: 10px;
+  }
+}
+
+/* Animação de fade-in para cards */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  animation: fadeIn 0.5s ease;
+}
+
+/* Estilos para o carrossel */
+.carousel-item img {
+  height: 400px;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
+/* Estilos adicionais para a página de detalhes por categoria */
+.categoria-banner {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.categoria-banner img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+}
+
+.categoria-banner-text {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+}
+
+.detalhe-categoria-header {
+  border-bottom: 1px solid #e9ecef;
+}
+
+.detalhe-card img {
+  max-height: 260px;
+  object-fit: cover;
+}
+
+.detalhe-comentarios li {
+  margin-bottom: 0.5rem;
+}
+
+#conteudoDetalhes {
+  min-height: 320px;
+}

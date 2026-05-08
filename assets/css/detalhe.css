@@ -1,0 +1,235 @@
+/* CSS personalizado para a página de detalhes (detalhe.html) */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Header e navegação */
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  background-color: #f8f9fa;
+}
+
+header {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.navbar-brand {
+  font-weight: 700;
+}
+
+/* Categoria Banner */
+.categoria-banner {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+}
+
+.categoria-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.categoria-banner-text {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+}
+
+.categoria-banner-text h1 {
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.categoria-banner-text p {
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Seção de conteúdo */
+#conteudoDetalhes {
+  animation: fadeIn 0.5s ease;
+}
+
+/* Cards de detalhe */
+.detalhe-card {
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.detalhe-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  border-color: rgba(13, 110, 253, 0.2);
+}
+
+.detalhe-card img {
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.detalhe-card:hover img {
+  transform: scale(1.05);
+}
+
+.detalhe-card .card-body {
+  padding: 1.5rem;
+}
+
+.detalhe-card .card-title {
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.detalhe-card .card-text {
+  margin-bottom: 0.75rem;
+}
+
+/* Comentários */
+.detalhe-comentarios {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.detalhe-comentarios ul {
+  list-style-type: none;
+}
+
+.detalhe-comentarios li {
+  padding: 0.5rem 0;
+  padding-left: 1rem;
+  position: relative;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.detalhe-comentarios li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #0d6efd;
+  font-weight: bold;
+}
+
+/* Estrelas de avaliação */
+.stars {
+  color: #ffc107;
+  font-size: 1.2rem;
+}
+
+/* Botões */
+.btn {
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0b5ed7;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5c636a;
+  border-color: #5c636a;
+  transform: translateY(-2px);
+}
+
+/* Badge */
+.badge {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.65rem;
+  font-weight: 600;
+}
+
+/* Grid responsivo */
+.row-cols-1 {
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .row-cols-md-2 {
+    gap: 2rem;
+  }
+
+  .categoria-banner {
+    height: 450px;
+  }
+}
+
+@media (max-width: 768px) {
+  .categoria-banner {
+    height: 300px;
+  }
+
+  .categoria-banner-text h1 {
+    font-size: 2rem;
+  }
+
+  .detalhe-card img {
+    height: 200px;
+  }
+
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .d-flex.justify-content-between > a {
+    width: 100%;
+  }
+}
+
+/* Animação de fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading animation */
+.loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Texto mutado para informações secundárias */
+.text-muted {
+  color: #6c757d !important;
+}
+
+/* Rodapé */
+footer {
+  margin-top: auto;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.04);
+}
+
+/* Suavidade geral */
+* {
+  transition-timing-function: ease;
+}
