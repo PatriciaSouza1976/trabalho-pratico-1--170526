@@ -287,7 +287,9 @@ function carregarLocais(filtrarBusca = '', ordenarPor = null) {
               <p class="card-text">${estrelas} (${local.avaliacao}) - ${local.totalAvaliacoes} avaliações</p>
               <p class="card-text">Popularidade: ${local.popularidade}%</p>
               <p class="card-text"><strong>Comentários:</strong> ${local.comentarios.slice(0, 2).join(', ')}...</p>
-              <a href="detalhe.html?id=${local.id}" class="btn btn-primary">Ver Detalhes</a>
+             <a href="detalhe.html?categoria=${local.categoria}" class="btn btn-primary">
+  Ver Detalhes
+</a>
             </div>
           </div>
         </div>
@@ -441,7 +443,10 @@ function carregarDetalhes() {
 document.addEventListener('DOMContentLoaded', () => {
   carregarCarrossel();
   carregarCategorias();
+  carregarLocais();
   configurarBusca();
   configurarOrdenacao();
-  carregarDetalhes(); // Para a página de detalhes / categoria
+  if (window.location.pathname.includes('detalhe.html')) {
+  carregarDetalhes();
+}
 });

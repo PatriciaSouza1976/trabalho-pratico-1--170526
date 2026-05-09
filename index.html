@@ -43,6 +43,24 @@
       <h2>Descubra BH com a gente!</h2>
     </section>
 
+    <form class="d-flex flex-column flex-md-row justify-content-center mt-3">
+
+  <input
+    id="campoBusca"
+    class="form-control mb-2 mb-md-0 w-100 w-md-50"
+    type="text"
+    placeholder="Digite: museu, parque ou bar">
+
+  <button
+    id="btnBuscar"
+    class="btn btn-primary ms-md-2">
+
+    Buscar
+
+  </button>
+
+</form>
+
     <!-- Destaques -->
     <section class="mt-3">
       <div id="carouselBH" class="carousel slide" data-bs-ride="carousel">
@@ -77,6 +95,35 @@
       </div>
     </section>
 
+    <!-- Locais em destaque -->
+<section class="mt-5">
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h2>Locais em Destaque</h2>
+
+    <div class="d-flex gap-2">
+
+      <button id="ordenarAvaliacao" class="btn btn-outline-primary btn-sm">
+        Melhor Avaliação
+      </button>
+
+      <button id="ordenarPopularidade" class="btn btn-outline-secondary btn-sm">
+        Popularidade
+      </button>
+
+    </div>
+
+  </div>
+
+  <div id="destinosContainer" class="row row-cols-1 row-cols-md-3 g-4">
+
+    <!-- Cards carregados pelo JavaScript -->
+
+  </div>
+
+</section>
+
   <section id="sobre" class="mb-5">
 
       <h2 class="h4 border-bottom pb-2 mb-4">
@@ -94,7 +141,7 @@
 
           <p class="mb-0">
 
-            Projeto acadêmico do **Conheça BH**,
+           Projeto acadêmico do <strong>Conheça BH</strong>,
 desenvolvido para apresentar os principais pontos turísticos,
 culturais e de lazer de Belo Horizonte. 
 O objetivo é ajudar moradores e turistas a descobrirem
@@ -124,22 +171,23 @@ oferecendo uma experiência moderna, intuitiva e agradável.
 
           <!-- REDES -->
           <div class="d-flex gap-3 fs-3">
+<!-- LINKEDIN -->
+<a href="https://www.linkedin.com/in/patricia-de-souza-36a33151"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="social-link">
 
-            <!-- LINKEDIN -->
-            <a href="#"
-               target="_blank"
-               class="social-link">
+  <i class="bi bi-linkedin"></i>
 
-              <i class="bi bi-linkedin"></i>
-
-            </a>
+</a>
 
             <!-- GITHUB -->
             <a href="https://github.com/PatriciaSouza1976"
                target="_blank"
+               rel="noopener noreferrer"
                class="social-link">
 
-              <i class="bi bi-github"></i>
+                             <i class="bi bi-github"></i>
 
             </a>
 
