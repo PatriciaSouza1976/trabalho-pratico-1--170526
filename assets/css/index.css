@@ -8,15 +8,17 @@ html {
 body {
   font-family: 'Arial', sans-serif;
   line-height: 1.6;
-  background-color: #f8f9fa;
+  background: linear-gradient(to bottom, #dbeafe, #f8f9fa);
 }
 
 header {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  background-color: #0d6efd;
 }
 
 .navbar-brand {
   font-weight: 700;
+  color: white !important;
 }
 
 /* Carousel */
@@ -121,4 +123,19 @@ section.bg-white p {
   .d-flex.justify-content-between > div {
     margin-top: 10px;
   }
+}
+/* Títulos */
+h2 {
+  color: #0d3b66;
+}
+
+/* Seções */
+section.bg-white {
+  background-color: #ffffff;
+  border-left: 5px solid #0d6efd;
+}
+
+/* Cards */
+.card {
+  background-color: #fcfcff;
 }

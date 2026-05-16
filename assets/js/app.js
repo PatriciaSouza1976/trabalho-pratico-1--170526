@@ -87,11 +87,11 @@ const locais = [
     nome: "Bar do Zé",
     categoria: "bar",
     imagem: "assets/imagem/bar1.png",
-    descricao: "Bar tradicional com música ao vivo e petiscos mineiros.",
-    bairro: "Savassi",
+    descricao: "Bar tradicional com petiscos mineiros.",
+    bairro: "Barreiro",
     avaliacao: 4.4,
     totalAvaliacoes: 180,
-    comentarios: ["Música ótima!", "Comida deliciosa.", "Ambiente animado."],
+    comentarios: ["Comida deliciosa.", "Ambiente familiar."],
     popularidade: 92
   },
   {
@@ -238,7 +238,13 @@ function carregarCategorias() {
   document.querySelectorAll('.categoria-card').forEach(card => {
     card.addEventListener('click', () => {
       const categoria = card.getAttribute('data-categoria');
-      window.location.href = `detalhe.html?categoria=${encodeURIComponent(categoria)}`;
+     const localEncontrado = locais.find(local =>
+  local.categoria === categoria
+);
+
+if (localEncontrado) {
+  window.location.href = `detalhe.html?id=${localEncontrado.id}`;
+}
     });
   });
 }
@@ -287,7 +293,7 @@ function carregarLocais(filtrarBusca = '', ordenarPor = null) {
               <p class="card-text">${estrelas} (${local.avaliacao}) - ${local.totalAvaliacoes} avaliações</p>
               <p class="card-text">Popularidade: ${local.popularidade}%</p>
               <p class="card-text"><strong>Comentários:</strong> ${local.comentarios.slice(0, 2).join(', ')}...</p>
-             <a href="detalhe.html?categoria=${local.categoria}" class="btn btn-primary">
+ <a href="detalhe.html?id=${local.id}" class="btn btn-primary">
   Ver Detalhes
 </a>
             </div>
@@ -322,7 +328,13 @@ function configurarBusca() {
       const categoria = mapaCategorias[busca];
 
       if (categoria) {
-        window.location.href = `detalhe.html?categoria=${categoria}`;
+        const localEncontrado = locais.find(local =>
+  local.categoria === categoria
+);
+
+if (localEncontrado) {
+  window.location.href = `detalhe.html?id=${localEncontrado.id}`;
+}
       } else {
         alert('Digite museu, parque ou bar para ver a categoria correspondente.');
       }
@@ -350,43 +362,29 @@ function configurarOrdenacao() {
 // Filtra os dados com base nessa categoria e renderiza o banner e os cards de cada local
 function carregarDetalhes() {
   const urlParams = new URLSearchParams(window.location.search);
-  const categoria = urlParams.get('categoria');
+ const id = parseInt(urlParams.get('id'));
   const container = document.getElementById('conteudoDetalhes');
 
   if (!container) return;
 
-  if (!categoria) {
+  if (!id) {
     container.innerHTML = `
       <div class="text-center py-5">
-        <h2>Categoria não informada</h2>
-        <p class="text-muted">Retorne à página inicial e escolha uma categoria.</p>
+       <h2>Local não informado</h2>
+<p class="text-muted">Retorne à página inicial e escolha um local.</p>
         <a class="btn btn-primary" href="index.html">Voltar à página inicial</a>
       </div>
     `;
     return;
   }
 
-  const infoCategoria = categoriasInfo[categoria];
-  const locaisFiltrados = locais.filter(local => local.categoria === categoria);
+  const local = locais.find(local => local.id === id);
 
-  if (!infoCategoria) {
+  if (!local) {
     container.innerHTML = `
       <div class="text-center py-5">
-        <h2>Categoria inválida</h2>
-        <p class="text-muted">A categoria selecionada não é reconhecida.</p>
-        <a class="btn btn-primary" href="index.html">Voltar à página inicial</a>
-      </div>
-    `;
-    return;
-  }
-
-  const nomeCategoria = infoCategoria.nome;
-
-  if (locaisFiltrados.length === 0) {
-    container.innerHTML = `
-      <div class="text-center py-5">
-        <h2>Categoria sem locais</h2>
-        <p class="text-muted">Não há locais cadastrados para &quot;${nomeCategoria}&quot;.</p>
+        <h2>Local não encontrado</h2>
+        <p class="text-muted">O local selecionado não foi encontrado.</p>
         <a class="btn btn-primary" href="index.html">Voltar à página inicial</a>
       </div>
     `;
@@ -394,47 +392,57 @@ function carregarDetalhes() {
   }
 
   container.innerHTML = `
-    <section class="categoria-banner mb-4 position-relative overflow-hidden rounded">
-      <img src="${infoCategoria.imagem}" class="img-fluid w-100" alt="${nomeCategoria}">
-      <div class="categoria-banner-text p-4 p-md-5 text-white position-absolute top-0 start-0 h-100 w-100 d-flex flex-column justify-content-end" style="background: rgba(0,0,0,0.35);">
-        <span class="badge bg-primary mb-2">Categoria</span>
-        <h1 class="display-6">${nomeCategoria}</h1>
-        <p class="mb-0">${infoCategoria.descricao}</p>
+  <div class="card shadow-sm detalhe-card">
+    
+    <img src="${local.imagem}" class="card-img-top" alt="${local.nome}">
+
+    <div class="card-body">
+
+      <h2 class="card-title">${local.nome}</h2>
+
+      <p class="text-muted">
+        ${local.descricao}
+      </p>
+
+      <p>
+        <strong>Categoria:</strong> ${local.categoria}
+      </p>
+
+      <p>
+        <strong>Bairro:</strong> ${local.bairro}
+      </p>
+
+      <p>
+        <strong>Avaliação:</strong>
+        ${gerarEstrelas(local.avaliacao)}
+        (${local.avaliacao})
+      </p>
+
+      <p>
+        <strong>Total de avaliações:</strong>
+        ${local.totalAvaliacoes}
+      </p>
+
+      <p>
+        <strong>Popularidade:</strong>
+        ${local.popularidade}%
+      </p>
+
+      <div class="mt-3">
+        <strong>Comentários:</strong>
+
+        <ul>
+          ${local.comentarios.map(com => `<li>${com}</li>`).join('')}
+        </ul>
       </div>
-    </section>
-    <section>
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-          <h2 class="h4 mb-1">Indicações de ${nomeCategoria}</h2>
-          <p class="text-muted mb-0">Confira os melhores locais dessa categoria em BH.</p>
-        </div>
-        <a class="btn btn-secondary" href="index.html">Voltar para o início</a>
-      </div>
-      <div class="row row-cols-1 row-cols-md-2 g-4">
-        ${locaisFiltrados.map(local => `
-          <article class="col">
-            <div class="card h-100 shadow-sm detalhe-card">
-              <img src="${local.imagem}" class="card-img-top" alt="${local.nome}">
-              <div class="card-body">
-                <h5 class="card-title">${local.nome}</h5>
-                <p class="card-text text-muted">${local.descricao}</p>
-                <p class="card-text"><strong>Bairro:</strong> ${local.bairro}</p>
-                <p class="card-text"><strong>Avaliação:</strong> ${gerarEstrelas(local.avaliacao)} (${local.avaliacao})</p>
-                <p class="card-text"><strong>Total de avaliações:</strong> ${local.totalAvaliacoes}</p>
-                <p class="card-text"><strong>Popularidade:</strong> ${local.popularidade}%</p>
-                <div class="mt-3 detalhe-comentarios">
-                  <strong>Comentários:</strong>
-                  <ul class="mb-0 ps-3">
-                    ${local.comentarios.map(com => `<li>${com}</li>`).join('')}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </article>
-        `).join('')}
-      </div>
-    </section>
-  `;
+
+      <a href="index.html" class="btn btn-secondary mt-3">
+        Voltar
+      </a>
+
+    </div>
+  </div>
+`;
 }
 
 // Inicialização quando o DOM estiver carregado
